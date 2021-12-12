@@ -16,9 +16,16 @@ const Guardarnav = () => {
         "precio":3800,
         "categoria":"Bebidas"
     }
+
+    const producto3={
+        "id":3,
+        "nomprod":"Kola Roman 1.5",
+        "precio":3800,
+        "categoria":"Bebidas"
+    }
     
     /**array de productos */
-    const pedidos=[producto1,producto2]
+    const pedidos=[producto1,producto2,producto3]
 
     /**
      * estados del componentes 
@@ -28,11 +35,13 @@ const Guardarnav = () => {
 
     /**funcion mostrar Usuario */
     const mostrarUsuario=(e)=>{
+        console.log(localStorage.getItem("pedidos"))
         e.preventDefault()
-        if(localStorage.getItem("pedidos")==null){
+       // if(localStorage.getItem("pedidos")==null){
             localStorage.setItem("pedidos",JSON.stringify(pedidos))
-        }
-        setPed(localStorage.getItem("pedidos"))    
+        //}
+        //setPed(localStorage.getItem("pedidos"))   
+        setPed(JSON.parse(localStorage.getItem("pedidos"))) 
     }
 
     useEffect(() => {
@@ -52,8 +61,17 @@ const Guardarnav = () => {
 
             <form onSubmit={mostrarUsuario}>
                 <button type="submit">Mostrar datos del Navegador</button>
+          
+        
             </form> 
 
+            <ul>
+            {
+                ped.map(item=>
+                  <li key={item.id}>{item.nomprod}</li>  
+                )    
+            }   
+            </ul>
             <button onClick={(e)=>{
                                     localStorage.removeItem("pedidos");
                                     setPed([])

@@ -1,9 +1,8 @@
-import Formulario from "./components/formulario";
-import Guardarnav from "./components/guardarnav";
+import Compra from "./components/pedido/compra";
 function App() {
   return (
     <div>
-       <Guardarnav></Guardarnav>
+        <Compra></Compra>
     </div>
   );
 }
